@@ -1,0 +1,8 @@
+{
+  "appId": "iq.edu.attendance.student",
+  "appName": "الحضور",
+  "webDir": "www",
+  "backgroundColor": "#2F5496",
+  "server": { "androidScheme": "https", "cleartext": true },
+  "android": { "allowMixedContent": true }
+}
