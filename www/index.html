@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2F5496">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="الحضور">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="style.css">
+  <title>نظام الحضور</title>
+</head>
+<body>
+  <!-- ═════ الرئيسية ═════ -->
+  <section id="screen-home" class="screen active">
+    <header class="hero">
+      <img src="icon.svg" class="logo" alt="">
+      <h1>نظام الحضور</h1>
+      <p id="uni-name">جامعة المعارف</p>
+    </header>
+    <main class="sheet">
+      <div id="student-info" class="card profile hidden">
+        <div id="avatar" class="avatar">؟</div>
+        <div class="who">
+          <b id="p-name"></b>
+          <span id="p-group"></span>
+        </div>
+      </div>
+      <ol class="steps">
+        <li><i>1</i>اضغط «مسح الباركود»</li>
+        <li><i>2</i>وجّه الكاميرا نحو شاشة الدكتور (أي زاوية)</li>
+        <li><i>3</i>يُسجَّل حضورك تلقائياً</li>
+      </ol>
+      <button id="btn-scan" class="btn primary big">📷 مسح الباركود</button>
+      <button id="btn-server" class="btn link hidden">⚙ عنوان السيرفر</button>
+    </main>
+  </section>
+
+  <!-- ═════ المسح (يقرأ الباركود من أي مكان وأي زاوية) ═════ -->
+  <section id="screen-scan" class="screen dark">
+    <div class="cam">
+      <video id="cam" playsinline muted autoplay></video>
+      <canvas id="overlay"></canvas>
+      <div class="hint">وجّه الكاميرا نحو الباركود — من أي زاوية</div>
+    </div>
+    <p id="scan-status" class="pill">جارٍ تشغيل الكاميرا...</p>
+    <div class="row">
+      <button id="btn-torch" class="btn ghost hidden">🔦 إضاءة</button>
+      <button id="btn-zoom" class="btn ghost hidden">🔍 تقريب</button>
+      <button id="btn-scan-cancel" class="btn ghost">رجوع</button>
+    </div>
+  </section>
+
+  <!-- ═════ التسجيل لأول مرة ═════ -->
+  <section id="screen-register" class="screen">
+    <header class="hero small">
+      <h2>التسجيل لأول مرة</h2>
+      <p>تُدخل هذه البيانات مرة واحدة فقط</p>
+    </header>
+    <main class="sheet">
+      <div class="card form">
+        <label for="f-name">الاسم الرباعي</label>
+        <input id="f-name" type="text" autocomplete="name" placeholder="علي حسن محمد كاظم">
+        <label for="f-group">الكروب</label>
+        <input id="f-group" type="text" placeholder="A1">
+        <p id="reg-error" class="error-text"></p>
+        <button id="btn-register" class="btn primary big">تسجيل الحضور</button>
+      </div>
+    </main>
+  </section>
+
+  <!-- ═════ نجاح ═════ -->
+  <section id="screen-success" class="screen center">
+    <div class="circle ok"><svg viewBox="0 0 52 52"><path d="M14 27l8 8 16-17"/></svg></div>
+    <h2 id="success-title">تم تسجيل حضورك</h2>
+    <p id="success-msg" class="sub"></p>
+    <button id="btn-success-home" class="btn primary">الرئيسية</button>
+  </section>
+
+  <!-- ═════ خطأ ═════ -->
+  <section id="screen-error" class="screen center">
+    <div class="circle bad"><svg viewBox="0 0 52 52"><path d="M16 16l20 20M36 16L16 36"/></svg></div>
+    <h2>لم يتم التسجيل</h2>
+    <p id="error-msg" class="sub"></p>
+    <button id="btn-error-retry" class="btn primary">إعادة المحاولة</button>
+    <button id="btn-error-home" class="btn">الرئيسية</button>
+  </section>
+
+  <!-- ═════ عنوان السيرفر (تطبيق الموبايل فقط) ═════ -->
+  <section id="screen-server" class="screen">
+    <header class="hero small">
+      <h2>عنوان السيرفر</h2>
+      <p>يُدخل مرة واحدة (اسأل الدكتور أو إدارة الجامعة)</p>
+    </header>
+    <main class="sheet">
+      <div class="card form">
+        <label for="f-server">عنوان السيرفر</label>
+        <input id="f-server" type="url" dir="ltr" inputmode="url" autocapitalize="none" autocomplete="off"
+               placeholder="http://192.168.1.10:5000">
+        <p id="server-error" class="error-text"></p>
+        <button id="btn-server-save" class="btn primary big">حفظ</button>
+        <button id="btn-server-cancel" class="btn">رجوع</button>
+      </div>
+    </main>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

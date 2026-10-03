@@ -1,0 +1,73 @@
+:root { --blue:#2F5496; --blue2:#1d3a72; --green:#1f9d55; --red:#d64040; --bg:#eef2f9; --ink:#1b2437; --mute:#63708a; }
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body { margin:0; min-height:100%; background:var(--bg); color:var(--ink); direction:rtl;
+  font-family:"Segoe UI",Tahoma,"Noto Naskh Arabic","Noto Sans Arabic",system-ui,sans-serif; }
+.screen { display:none; min-height:100vh; min-height:100dvh; flex-direction:column; align-items:center; }
+.screen.active { display:flex; animation:fade .25s ease; }
+@keyframes fade { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+.hidden { display:none !important; }
+
+/* رأس متدرّج */
+.hero { width:100%; text-align:center; color:#fff; padding:calc(env(safe-area-inset-top) + 34px) 20px 70px;
+  background:linear-gradient(160deg,var(--blue),var(--blue2)); border-radius:0 0 34px 34px; }
+.hero.small { padding-top:calc(env(safe-area-inset-top) + 24px); padding-bottom:56px; }
+.hero h1, .hero h2 { margin:8px 0 2px; font-size:1.7rem; } .hero h2 { font-size:1.4rem; }
+.hero p { margin:0; opacity:.85; }
+.logo { width:84px; height:84px; border-radius:20px; box-shadow:0 6px 18px rgba(0,0,0,.25); }
+.sheet { width:100%; max-width:440px; padding:0 18px 28px; margin-top:-40px; display:flex; flex-direction:column; gap:14px; }
+
+.card { background:#fff; border-radius:18px; padding:16px; box-shadow:0 6px 22px rgba(30,58,114,.12); }
+.profile { display:flex; gap:14px; align-items:center; }
+.avatar { flex:none; width:54px; height:54px; border-radius:50%; background:linear-gradient(135deg,var(--blue),#5b8def);
+  color:#fff; font-size:1.5rem; font-weight:700; display:flex; align-items:center; justify-content:center; }
+.who { display:flex; flex-direction:column; min-width:0; line-height:1.7; }
+.who b { font-size:1.05rem; } .who span { color:var(--mute); font-size:.9rem; overflow:hidden; text-overflow:ellipsis; }
+
+.steps { list-style:none; margin:0; padding:14px 16px; background:#fff; border-radius:18px; display:flex;
+  flex-direction:column; gap:10px; box-shadow:0 6px 22px rgba(30,58,114,.08); color:var(--ink); }
+.steps li { display:flex; gap:12px; align-items:center; }
+.steps i { flex:none; width:28px; height:28px; border-radius:50%; background:#e3ebfb; color:var(--blue);
+  font-style:normal; font-weight:700; display:flex; align-items:center; justify-content:center; }
+
+.btn { border:none; border-radius:14px; padding:14px 22px; font-size:1rem; font-family:inherit; font-weight:600;
+  background:#dfe6f4; color:var(--ink); cursor:pointer; width:100%; max-width:440px; transition:transform .1s, opacity .2s; }
+.btn:active { transform:scale(.97); } .btn:disabled { opacity:.55; }
+.btn.primary { background:linear-gradient(135deg,var(--blue),#4a7ad6); color:#fff; box-shadow:0 8px 20px rgba(47,84,150,.35); }
+.btn.big { padding:18px; font-size:1.2rem; }
+.btn.ghost { background:rgba(255,255,255,.14); color:#fff; }
+.center { justify-content:center; text-align:center; gap:14px; padding:24px 20px; }
+.center .btn { max-width:340px; }
+.sub { margin:0; color:var(--mute); line-height:1.8; max-width:340px; }
+h2 { margin:0; }
+
+/* الفورم */
+.form { display:flex; flex-direction:column; gap:6px; }
+label { font-weight:700; font-size:.92rem; margin-top:6px; }
+input { width:100%; padding:14px; border:1.5px solid #ced7ea; border-radius:12px; font-size:16px; font-family:inherit;
+  background:#fafbff; color:var(--ink); }
+input:focus { outline:none; border-color:var(--blue); background:#fff; box-shadow:0 0 0 3px rgba(47,84,150,.15); }
+.error-text { color:var(--red); margin:4px 0; min-height:1.3em; font-size:.92rem; font-weight:600; }
+
+/* المسح */
+.screen.dark { background:#0d1424; color:#fff; padding:calc(env(safe-area-inset-top) + 12px) 12px calc(env(safe-area-inset-bottom) + 14px);
+  gap:12px; justify-content:center; }
+.cam { position:relative; width:100%; max-width:620px; height:min(72vh,720px); background:#000; border-radius:22px; overflow:hidden;
+  box-shadow:0 0 0 3px rgba(122,165,255,.35); }
+.cam video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.cam canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.hint { position:absolute; top:10px; left:0; right:0; text-align:center; font-size:.9rem; font-weight:600; text-shadow:0 1px 4px #000;
+  pointer-events:none; }
+.pill { margin:0; padding:9px 18px; border-radius:99px; background:rgba(255,255,255,.12); font-weight:600; text-align:center; }
+.pill.warn { background:rgba(255,170,60,.25); }
+.row { display:flex; gap:10px; width:100%; max-width:620px; } .row .btn { flex:1; padding:12px 8px; }
+
+/* نتيجة */
+.circle { width:112px; height:112px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.circle svg { width:64px; height:64px; fill:none; stroke:#fff; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+.circle.ok { background:var(--green); box-shadow:0 0 0 12px rgba(31,157,85,.15); animation:pop .4s ease; }
+.circle.bad { background:var(--red); box-shadow:0 0 0 12px rgba(214,64,64,.15); animation:shake .4s ease; }
+@keyframes pop { from { transform:scale(.4); opacity:0; } to { transform:none; opacity:1; } }
+@keyframes shake { 20%,60% { transform:translateX(-8px); } 40%,80% { transform:translateX(8px); } }
+@media (min-width:700px) { .hero { border-radius:0 0 44px 44px; } }
+
+.btn.link { background:transparent; color:var(--mute); box-shadow:none; font-weight:500; }
